@@ -13,5 +13,13 @@ washington.csv
 bikeshare.py
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+In gerenal  
+Udacity lessons ,
+variuos courses from the internet
+But  especially
+The link below was used to execute the display_data function
+
+https://github.com/synflyn28/udacity-bikeshare/blob/master/bikeshare_2.py
+
+
 
