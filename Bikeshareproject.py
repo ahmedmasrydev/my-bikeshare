@@ -11,7 +11,6 @@ import numpy as np
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
-
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -44,8 +43,6 @@ def get_filters():
          day=input('Please renter a day from week or "all"fo all: ')
     print('-'*40)
     return city, month, day
-
-
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.
@@ -58,36 +55,23 @@ def load_data(city, month, day):
         df - Pandas DataFrame containing city data filtered by month and day
     """
     df= pd.read_csv(CITY_DATA[city])
-
-
     df['Start Time'] = pd.to_datetime(df['Start Time'])
-
-
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.weekday_name
-
-
     if month != 'all':
 
         months = ['january', 'february', 'march', 'april', 'may', 'june']
         month = months.index(month) + 1
 
     return df
-
-
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
-
-
-
     common_month = df['month'].mode()[0]
 
     print('Most common month:',common_month)
-
-
     common_day = df['day_of_week'].mode()[0]
 
     print('Most common day :',common_day)
@@ -100,8 +84,6 @@ def time_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
-
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
 
@@ -118,8 +100,6 @@ def station_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
-
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
@@ -134,8 +114,6 @@ def trip_duration_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
-
 def user_stats(df):
     """Displays statistics on bikeshare users."""
 
