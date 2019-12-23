@@ -34,7 +34,7 @@ def get_filters():
     month=month.lower()
     while month not in monthes :
           print('Missing!')
-          month=input('Please renter chosen month mentioned or "all"for all: ') 
+          month=input('Please renter chosen month mentioned or "all"for all: ')
 
     days=['all','monday','tuesday','wendesday','Thursday','friday','satarday','sunday']
     day=input('Please enter a day from week or "all"for all: ')
@@ -59,19 +59,19 @@ def load_data(city, month, day):
     """
     df= pd.read_csv(CITY_DATA[city])
 
-    
+
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
-  
+
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.weekday_name
 
-   
+
     if month != 'all':
-       
+
         months = ['january', 'february', 'march', 'april', 'may', 'june']
         month = months.index(month) + 1
-   
+
     return df
 
 
@@ -81,17 +81,17 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    
-   
+
+
     common_month = df['month'].mode()[0]
 
     print('Most common month:',common_month)
-   
-   
+
+
     common_day = df['day_of_week'].mode()[0]
 
     print('Most common day :',common_day)
-   
+
     df['Start Time'] = pd.to_datetime(df['Start Time'])
     df['hour'] = df['Start Time'].dt.hour
     common_hour = df['hour'].mode()[0]
@@ -101,7 +101,7 @@ def time_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-    
+
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
 
@@ -112,7 +112,7 @@ def station_stats(df):
 
     common_end_station=df['End Station'].mode()[0]
     print('Most common used end station: ',common_end_station)
-  
+
     common_start_station+'AND'+common_end_station
     print('Most frequent combination of start station and end station trip: ',common_start_station+' AND '+common_end_station)
 
@@ -128,7 +128,7 @@ def trip_duration_stats(df):
 
     total_travel=df['Trip Duration'].sum()
     print('Total travel time in days:  ',total_travel/(60*60*24),'Day')
-    
+
     mean_travel=df['Trip Duration'].mean()
     print('Mean travel time in minutes: ',mean_travel/60,'Min.')
 
@@ -144,14 +144,14 @@ def user_stats(df):
 
     user_types = df['User Type'].value_counts()
     print(user_types)
-    
+
     if 'Gender' in df.columns:
         gender_types= df['Gender'].value_counts()
         print(gender_types)
     else:
         print('Gender data is missing for this city')
-        
-       
+
+
     if 'Birth Year' in df.columns:
         Earliest_year=df['Birth Year'].min()
         print('Earliest year: ',Earliest_year)
@@ -161,7 +161,7 @@ def user_stats(df):
         print('Most common year of birth: ',Most_common_year_of_birth)
     else:
         print('Birth Year data is missing for this city')
-            
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 def display_data(df):
@@ -207,7 +207,3 @@ if __name__ == "__main__":
 
 
 # In[ ]:
-
-
-
-
